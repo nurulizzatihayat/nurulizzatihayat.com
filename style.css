@@ -13,6 +13,26 @@ body {
     z-index: 9999;
 }
 
+#cursor-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(15, 75, 15, 0.2) 1%,
+        rgba(20, 99, 17, 0.2) 10%,
+        transparent 70%
+    );
+
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: -9999;
+
+    filter: blur(5px);
+}
+
 .navbar {
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
@@ -104,34 +124,52 @@ body.scrolled #content {
 }
 
 #experience .card {
-  z-index: 2;
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  border-width: 1px;
-  border-color: #eceaf150;
-  color: rgb(255, 255, 255);
-  background-color: rgba(90, 92, 128, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+    width: 100%;
+    max-width: 1000px;
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgb(255, 255, 255);
+    background-color: rgba(90, 92, 128, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 0.5rem 1rem;
+    text-align: justify;
+}
+
+.experience-company {
+    margin-bottom: 0.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.experience-date {
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    opacity: 0.5;
 }
 
 #experience .card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0; 
-  background: url(./static/img/green.png) no-repeat center center/cover;
-  z-index: 1;
-  transition: height 0.6s ease;
-  pointer-events: none;
-  border-radius: 1rem 1rem 0 0;
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: url(./static/img/green.png) no-repeat center center / cover;
+
+    opacity: 0.35;
+    z-index: 1;
+
+    transform: scale(1.05);
+    transition: opacity 0.6s ease, transform 0.8s ease;
+
+    pointer-events: none;
 }
 
 #experience .card:hover::before {
-  height: 100%;
+    opacity: 0.55;
+    transform: scale(1);
 }
 
 #experience .card * {
@@ -142,27 +180,157 @@ body.scrolled #content {
 }
 
 #experience .card:hover * {
-  color: #061a00;
+  color: #fdfffd;
+}
+
+.experience-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.experience-stack span {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    opacity: 0.7;
 }
 
 #project h1 {
     position: relative;
-    z-index: 1;
+    z-index: -1;
     line-height: 0.1;
     padding-top: 4rem;
 }
 
-#project .card {
-    z-index: 2;
-    position: relative;
-    border-width: 0;
-    color: rgb(255, 255, 255);
+.project-card {
+    width: 100%;
+    max-width: 1000px;
+
+    display: grid;
+    grid-template-columns: 40% 60%;
+
+
+    overflow: hidden;
     border-radius: 1rem;
+
+    background: rgba(20, 20, 25, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
-#project .card img {
-    border-radius: 1rem;
-    object-fit: cover;
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* IMAGE */
+
+.project-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(2);
+}
+
+
+/* INFORMATION */
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.project-label {
+    margin: 0 0 0.4rem;
+
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.project-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.project-heading h3 {
+    margin: 0;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.project-heading a {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    color: white;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.project-heading a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(2px, -2px);
+}
+
+.project-description {
+    margin: 1rem 0 1.2rem;
+
+    font-size: 0.8rem;
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.project-tech span {
+    padding: 0.3rem 0.65rem;
+
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.65);
 }
 
 #education h1 {
@@ -172,81 +340,83 @@ body.scrolled #content {
     padding-top: 4rem;
 }
 
-#education .table {
-  z-index: 2;
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  border-width: 1px;
-  border-color: #eceaf150 !important;
-  color: rgb(255, 255, 255);
-  background-color: rgba(90, 92, 128, 0.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border: 1px solid white;
-}
+/* Main education container */
+.education-list {
+    width: 100%;
+    max-width: 1000px;
 
-.outer-border {
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-.outer-border th,
-.outer-border td {
-    border: none;
-}
-
-#cursor-glow {
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle,
-        rgba(15, 75, 15, 0.2) 1%,
-        rgba(20, 99, 17, 0.2) 10%,
-        transparent 70%
-    );
-
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-
-    filter: blur(5px);
-}
-
-.blurred-highlight {
     position: relative;
-    display: inline-block;
-    padding: 8px 14px;
-    border-radius: 12px;
+    z-index: 2;
 
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(90, 92, 128, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    overflow: hidden;
 }
 
-.blurred-highlight::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
+/* Individual education entry */
+.education-item {
+    display: grid;
+    grid-template-columns: 25% 75%;
 
-    background: linear-gradient(
-        120deg,
-        rgba(255, 255, 255, 0.25),
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.2)
-    );
+    padding: 1.5rem 2.5rem;
 
-    filter: blur(6px);
-    opacity: 0.6;
-
-    z-index: -1;
+    position: relative;
 }
+
+.education-item + .education-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Year */
+.education-year {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+
+    padding-right: 2rem;
+    padding-top: 0.15rem;
+}
+
+/* Right side */
+.education-info {
+    padding-left: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.education-info h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.education-info p {
+    margin: 0.4rem 0 1rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.9rem;
+}
+
+/* Results */
+.education-results {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.education-results span {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-right: 0.35rem;
+}
+
+.education-results span:not(:first-child) {
+    margin-left: 1.2rem;
+}
+
+
+
 
 /* =========================
    SECTION ANIMATIONS
