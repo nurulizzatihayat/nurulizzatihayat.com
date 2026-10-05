@@ -508,3 +508,292 @@ body.scrolled #content {
 #project.show .project-card:nth-of-type(3) {
     transition-delay: 0.6s;
 }
+
+
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    /* GENERAL */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        padding: 0.75rem 0;
+    }
+
+    .navbar .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.9rem;
+    }
+
+    .navbar-brand img {
+        width: 16px;
+    }
+
+    .navbar-collapse {
+        padding: 1rem 0;
+    }
+
+    .navbar-nav {
+        gap: 0.25rem;
+    }
+
+    .nav-link {
+        padding: 0.6rem 0 !important;
+    }
+
+
+    /* INTRO */
+    #intro {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+        padding: 6rem 1.5rem 3rem;
+        text-align: center;
+    }
+
+    #intro h1 {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    #intro .lead {
+        font-size: 1rem;
+    }
+
+    #intro > p.small {
+        max-width: 320px;
+        line-height: 1.6;
+    }
+
+    #intro-details {
+        margin-top: 1rem;
+    }
+
+    #intro-details p {
+        text-align: center;
+        line-height: 1.7;
+    }
+
+
+    /* SCROLLED INTRO */
+    body.scrolled #intro {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        padding: 6rem 1.5rem 3rem;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center;
+    }
+
+    body.scrolled #intro-details {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    /* MAIN CONTENT */
+    #content {
+        margin-top: 0;
+        margin-left: 0 !important;
+        max-width: 100%;
+        width: 100%;
+        padding: 2rem 1rem;
+    }
+
+
+    /* SECTION */
+    #education,
+    #experience,
+    #project {
+        min-height: auto;
+        padding-top: 5rem !important;
+        padding-bottom: 5rem !important;
+        margin: 0 !important;
+    }
+
+
+    /* SECTION TITLES */
+    #education h1,
+    #experience h1,
+    #project h1 {
+        width: 100%;
+        font-size: clamp(3rem, 15vw, 5rem);
+        line-height: 0.8;
+        padding-top: 0;
+        margin-bottom: -0.5rem;
+        text-align: center !important;
+        white-space: nowrap;
+    }
+
+    #education h1,
+    #experience h1 {
+        z-index: 1;
+    }
+
+    #project h1 {
+        z-index: 1;
+    }
+
+
+    /* EDUCATION */
+    .education-list {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .education-item {
+        grid-template-columns: 1fr;
+        padding: 1.25rem 1.25rem;
+        gap: 0.5rem;
+    }
+
+    .education-year {
+        padding: 0;
+        font-size: 0.75rem;
+    }
+
+    .education-info {
+        padding-left: 0;
+        border-left: none;
+    }
+
+    .education-info h4 {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .education-info p {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .education-results {
+        font-size: 0.75rem;
+    }
+
+
+    /* EXPERIENCE */
+    #experience .card {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .experience-card {
+        padding: 1rem !important;
+    }
+
+    .experience-card h4 {
+        font-size: 1.05rem;
+        line-height: 1.4;
+    }
+
+    .experience-card .card-text {
+        line-height: 1.7;
+    }
+
+    .experience-stack {
+        gap: 0.4rem;
+    }
+
+
+    /* PROJECT */
+    .project-card {
+        width: 100%;
+        max-width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .project-image {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        padding: 1rem;
+    }
+
+    .project-image img {
+        width: 100%;
+        height: auto;
+        max-height: 250px;
+        object-fit: contain;
+    }
+
+    /* IMPORTANT:
+       Do NOT zoom the image on mobile */
+    .project-card:hover .project-image img {
+        transform: none;
+    }
+
+    .project-info {
+        padding: 1.25rem;
+    }
+
+    .project-heading h3 {
+        font-size: 1.25rem;
+    }
+
+    .project-description {
+        font-size: 0.8rem;
+        line-height: 1.7;
+    }
+
+
+    /* CURSOR EFFECTS
+       Touchscreens don't need these */
+    #cursor-icon,
+    #cursor-glow {
+        display: none;
+    }
+}
+
+
+/* SMALL PHONES */
+@media (max-width: 480px) {
+
+    #content {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    #intro {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #intro h1 {
+        font-size: 2.8rem;
+    }
+
+    #education h1,
+    #experience h1,
+    #project h1 {
+        font-size: 3rem;
+    }
+
+    .education-item {
+        padding: 1.1rem;
+    }
+
+    .project-image {
+        min-height: 170px;
+    }
+
+    .project-info {
+        padding: 1rem;
+    }
+
+    .project-heading a {
+        width: 34px;
+        height: 34px;
+    }
+}
